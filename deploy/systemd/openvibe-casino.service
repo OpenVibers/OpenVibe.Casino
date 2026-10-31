@@ -1,5 +1,5 @@
 [Unit]
-Description=OpenVibe.Casino — the open meme database, rebuilt with AI.
+Description=OpenVibe.Casino — learn it, play it, never pay it.
 # Network (sign-in, JWKS, account events) should be up first, but Meme degrades honestly without it: the public
 # pages and API serve, and sign-in and the guarded routes wait for the signing key (see /api/ready).
 After=network.target postgresql.service pgbouncer.service valkey-server.service
@@ -10,7 +10,7 @@ Type=simple
 User=ubuntu
 Group=ubuntu
 WorkingDirectory=/opt/openvibe.casino
-EnvironmentFile=/etc/openvibe/meme.env
+EnvironmentFile=/etc/openvibe/casino.env
 Environment=NODE_ENV=production
 Environment=PORT=5210
 Environment=HOST=127.0.0.1
