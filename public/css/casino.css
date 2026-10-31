@@ -1,0 +1,246 @@
+/* OpenVibe.Casino — the room's look. Colours come from the theme (the kit's --ovk-* tokens) and the room's accent
+ * (rooms.js 'casino', a calm green that passes AA in both modes); the felt is felt in every theme. Motion uses the
+ * network's tokens, so Calm stills it and reduced motion shows the final state. */
+
+.cs { font-family: var(--ovk-font); color: var(--ovk-text); }
+.skip { position: absolute; left: -9999px; top: 8px; z-index: 100; padding: 8px 12px; border-radius: 8px; background: var(--ovk-panel); color: var(--ovk-text); }
+.skip:focus { left: 8px; }
+.cs-wrap { width: min(1180px, 100% - 32px); margin-inline: auto; }
+.cs-page { padding-block: 28px 56px; }
+.cs-narrow { width: min(820px, 100% - 32px); }
+.cs-page-h { display: grid; gap: 8px; margin-bottom: 24px; }
+.cs-page-h h1 { margin: 0; font-size: clamp(1.8rem, 4.5vw, 2.6rem); line-height: 1.1; text-wrap: balance; }
+.cs-page-h p { margin: 0; color: var(--ovk-muted); max-width: 70ch; line-height: 1.55; }
+.cs-kicker { margin: 0; font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--room-strong, var(--ovk-accent)) !important; }
+.cs-acts { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px; }
+.cs-btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 44px; padding: 0 18px; border: 0; border-radius: 999px;
+  background: var(--room-fill, var(--ovk-fill)); color: var(--room-on, var(--ovk-on-fill)); font: 700 15px/1 var(--ovk-font); text-decoration: none; cursor: pointer;
+  transition: transform var(--ov-dur-1, .12s) var(--ov-ease-out, ease-out), filter var(--ov-dur-1, .12s) var(--ov-ease-out, ease-out); }
+.cs-btn:hover { filter: brightness(1.08); }
+.cs-btn:active { transform: scale(.97); }
+.cs-btn:focus-visible, .cs-cell:focus-visible, .cs-spot:focus-visible, .cs-chip:focus-visible { outline: 3px solid color-mix(in srgb, var(--room-accent) 60%, transparent); outline-offset: 2px; }
+.cs-btn.is-quiet { background: transparent; color: var(--ovk-text); box-shadow: inset 0 0 0 1.5px var(--ovk-line); }
+.cs-btn.is-small { min-height: 36px; min-width: 36px; padding: 0 12px; }
+.cs-btn.is-hint { box-shadow: 0 0 0 3px #ffd27a; }
+.cs-btn:disabled { opacity: .55; cursor: default; }
+.cs-muted { color: var(--ovk-muted); margin: 0; }
+.cs-fine { color: var(--ovk-muted); font-size: 13px; line-height: 1.5; }
+.cs-fine a, .cs-prose a, .cs-safe-line a, .cs-edge-now a { color: var(--room-strong, var(--ovk-accent)); }
+.cs-noscript { padding: 16px; border-radius: 14px; background: rgba(0, 0, 0, .25); color: #f1f5f2; }
+
+/* ── The motif: a fan of cards, chips, and the curve drawing beneath ── */
+.cs-motif { position: relative; width: min(100%, 380px); aspect-ratio: 5 / 4; margin: 0 auto; color: var(--room-accent); }
+.cs-fan { position: absolute; left: 50%; top: 6%; width: 0; height: 60%; }
+.cs-mc { position: absolute; left: -46px; top: 0; width: 92px; height: 128px; border-radius: 12px; background: #fdfdf8; color: #121212; box-shadow: 0 14px 30px -14px rgba(0, 0, 0, .6);
+  display: grid; place-items: start; padding: 10px 12px; transform-origin: 50% 160%; animation: csFan var(--ov-dur-4, .52s) var(--ov-ease-spring, cubic-bezier(.34, 1.56, .64, 1)) both; }
+.cs-mc b { font: 800 22px/1 Georgia, serif; }
+.cs-mc i { font-style: normal; font-size: 30px; line-height: 1; margin-top: 4px; }
+.cs-mc.is-red { color: #c0262d; }
+.cs-mc-1 { --r: -21deg; } .cs-mc-2 { --r: -7deg; animation-delay: var(--ov-dur-1, .12s); } .cs-mc-3 { --r: 7deg; animation-delay: calc(var(--ov-dur-1, .12s) * 2); } .cs-mc-4 { --r: 21deg; animation-delay: calc(var(--ov-dur-1, .12s) * 3); }
+.cs-mc { transform: rotate(var(--r)); }
+@keyframes csFan { from { transform: rotate(0deg); opacity: 0; } }
+.cs-chips { position: absolute; right: 8%; bottom: 26%; display: grid; }
+.cs-chips span { width: 64px; height: 14px; margin-top: -4px; border-radius: 50%; background: radial-gradient(closest-side, transparent 58%, rgba(255, 255, 255, .85) 60% 66%, transparent 68%), var(--room-accent); box-shadow: 0 3px 0 color-mix(in srgb, var(--room-accent) 55%, #000); }
+.cs-chips span:nth-child(2) { background-color: #c2410c; box-shadow: 0 3px 0 #7c2d12; }
+.cs-chips span:nth-child(3) { background-color: #1f2937; box-shadow: 0 3px 0 #000; }
+.cs-curve { position: absolute; left: 4%; right: 4%; bottom: 0; width: 92%; height: 22%; }
+.cs-curve path { stroke-dasharray: 100; animation: csDraw calc(var(--ov-dur-4, .52s) * 3) var(--ov-ease-in-out, ease-in-out) both; animation-delay: var(--ov-dur-4, .52s); }
+@keyframes csDraw { from { stroke-dashoffset: 100; } to { stroke-dashoffset: 0; } }
+
+/* ── What each bet costs: the ladder ── */
+.cs-section { margin-block: 32px; }
+.cs-head { display: grid; gap: 6px; margin-bottom: 16px; }
+.cs-head h2 { margin: 0; font-size: clamp(1.4rem, 3vw, 1.8rem); }
+.cs-head p { margin: 0; color: var(--ovk-muted); max-width: 70ch; }
+.cs-ladder { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.cs-ladder a { display: grid; grid-template-columns: 96px minmax(0, 220px) minmax(0, 1fr) 72px; align-items: center; gap: 12px; padding: 7px 10px; border-radius: 10px; color: var(--ovk-text); text-decoration: none; }
+.cs-ladder a:hover { background: var(--ovk-panel); }
+.cs-l-game { font-size: 13px; font-weight: 700; color: var(--tone); }
+.cs-l-bet { font-size: 14px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cs-l-bar { height: 10px; border-radius: 5px; background: var(--ovk-panel-2); overflow: hidden; }
+.cs-l-bar i { display: block; height: 100%; width: var(--w); border-radius: inherit; background: var(--tone); transform-origin: 0 50%; animation: csGrow var(--ov-dur-4, .52s) var(--ov-ease-out, ease-out) both; }
+.cs-l-edge { text-align: right; font-variant-numeric: tabular-nums; }
+.cs-l-g2 { display: none; }
+@keyframes csGrow { from { transform: scaleX(0); } }
+@media (max-width: 640px) {
+  .cs-ladder a { grid-template-columns: minmax(0, 1fr) 64px; grid-template-areas: "bet edge" "bar bar"; gap: 4px 10px; }
+  .cs-l-game { display: none; }
+  .cs-l-bet { grid-area: bet; white-space: normal; }
+  .cs-l-g2 { display: inline; color: var(--tone); font-weight: 700; }
+  .cs-l-bar { grid-area: bar; height: 8px; }
+  .cs-l-edge { grid-area: edge; }
+}
+
+/* ── The scenes' pictures ── */
+.cs-stack { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 14px 0; }
+.cs-stack span { display: grid; place-items: center; width: 76px; height: 76px; margin-left: -14px; border-radius: 50%; font: 800 16px/1 var(--ovk-font); color: #fff;
+  background: radial-gradient(closest-side, var(--c) 62%, #fff 63% 70%, var(--c) 71%); box-shadow: 0 6px 14px -6px rgba(0, 0, 0, .6);
+  transform: rotate(var(--t)); animation: csDeal var(--ov-dur-3, .32s) var(--ov-ease-out, ease-out) both; }
+.cs-stack span.c1 { --c: #b91c1c; --t: -10deg; margin-left: 0; } .cs-stack span.c2 { --c: #15803d; --t: -3deg; animation-delay: var(--ov-dur-1, .12s); }
+.cs-stack span.c3 { --c: #1f2937; --t: 4deg; animation-delay: calc(var(--ov-dur-1, .12s) * 2); } .cs-stack span.c4 { --c: #6d28d9; --t: 10deg; animation-delay: calc(var(--ov-dur-1, .12s) * 3); }
+.cs-stack b { flex-basis: 100%; text-align: center; font-size: 14px; color: var(--ovk-muted); }
+.cs-bank { margin: 0; display: grid; gap: 8px; width: min(420px, 100%); justify-self: center; }
+.cs-bank svg { width: 100%; height: auto; aspect-ratio: 32 / 15; border-radius: 12px; background: var(--ovk-panel-2); }
+.cs-bank-start { stroke: var(--ovk-muted); stroke-dasharray: 4 4; stroke-width: 1; }
+.cs-bank-p { fill: none; stroke-width: 1.8; stroke-dasharray: 100; animation: csDraw calc(var(--ov-dur-4, .52s) * 3) var(--ov-ease-out, ease-out) both; }
+.cs-bank-p0 { stroke: var(--room-accent); } .cs-bank-p1 { stroke: #f59e0b; animation-delay: var(--ov-dur-1, .12s); } .cs-bank-p2 { stroke: #60a5fa; animation-delay: calc(var(--ov-dur-1, .12s) * 2); } .cs-bank-p3 { stroke: #f472b6; animation-delay: calc(var(--ov-dur-1, .12s) * 3); } .cs-bank-p4 { stroke: #a78bfa; animation-delay: calc(var(--ov-dur-1, .12s) * 4); }
+.cs-bank figcaption { font-size: 13px; color: var(--ovk-muted); }
+.cs-chart-wrap { overflow-x: auto; max-width: 100%; }
+.cs-chart { border-collapse: separate; border-spacing: 2px; font: 700 13px/1 var(--ovk-font); font-variant-numeric: tabular-nums; }
+.cs-chart caption { text-align: left; font-weight: 700; padding-bottom: 8px; color: var(--ovk-text); }
+.cs-chart th { padding: 6px 7px; color: var(--ovk-muted); font-weight: 700; }
+.cs-chart td { min-width: 30px; height: 28px; padding: 0 4px; text-align: center; border-radius: 6px; background: var(--ovk-panel-2); color: var(--ovk-text); }
+.cs-chart td.is-H { background: color-mix(in srgb, #ef4444 26%, var(--ovk-panel)); }
+.cs-chart td.is-S { background: color-mix(in srgb, #22c55e 26%, var(--ovk-panel)); }
+.cs-chart td.is-D { background: color-mix(in srgb, #f59e0b 34%, var(--ovk-panel)); }
+.cs-chart td.is-P { background: color-mix(in srgb, #6366f1 34%, var(--ovk-panel)); }
+
+/* ── Game cards (Play, Learn) ── */
+.cs-games { list-style: none; margin: 0 0 24px; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 210px), 1fr)); gap: 12px; }
+.cs-game a { display: grid; gap: 6px; height: 100%; padding: 18px; border-radius: 18px; border: 1px solid var(--ovk-line); text-decoration: none; color: var(--ovk-text);
+  background: linear-gradient(160deg, color-mix(in srgb, var(--tone) 22%, var(--ovk-panel)), var(--ovk-panel) 62%);
+  transition: transform var(--ov-dur-2, .2s) var(--ov-ease-out, ease-out), border-color var(--ov-dur-2, .2s) var(--ov-ease-out, ease-out); }
+.cs-game a:hover { transform: translateY(-2px); border-color: var(--tone); }
+.cs-game-name { font-size: 1.2rem; font-weight: 800; }
+.cs-game-line { color: var(--ovk-muted); font-size: 14px; line-height: 1.45; }
+.cs-game-edge { margin-top: auto; font-size: 13px; color: var(--ovk-muted); }
+.cs-game-edge b { color: var(--ovk-text); }
+
+/* ── The tables ── */
+.cs-table-h { grid-template-columns: minmax(0, 1fr) auto; align-items: end; }
+.cs-wallet { display: grid; justify-items: end; padding: 10px 16px; border-radius: 16px; background: var(--ovk-panel); border: 1px solid var(--ovk-line); }
+.cs-wallet span, .cs-wallet small { color: var(--ovk-muted); font-size: 12px; }
+.cs-wallet b { font-size: 1.6rem; font-variant-numeric: tabular-nums; }
+.cs-felt { position: relative; min-height: 380px; padding: 22px; border-radius: 28px; color: #eef6f0;
+  background: radial-gradient(120% 90% at 50% 0%, #2c7a4b, #14462b 70%, #0d321f); box-shadow: inset 0 0 0 10px #3b2416, inset 0 0 0 12px #6b4423, 0 30px 60px -36px rgba(0, 0, 0, .8); }
+.cs-felt .cs-muted, .cs-felt .cs-label { color: #b9d8c4; }
+.cs-felt .cs-btn.is-quiet { color: #eef6f0; box-shadow: inset 0 0 0 1.5px rgba(238, 246, 240, .35); }
+.cs-label { margin: 0 0 6px; font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.cs-say { min-height: 1.6em; margin: 14px 0; font-size: 1.05rem; font-weight: 600; }
+.cs-say.is-good { color: #b6f5c8; } .cs-say.is-bad { color: #ffd0c8; }
+.cs-controls, .cs-betline, .cs-denoms, .cs-seg { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.cs-betline { margin-top: 12px; }
+.cs-chip { width: 44px; height: 44px; border: 0; border-radius: 50%; color: #fff; font: 800 13px/1 var(--ovk-font); cursor: pointer;
+  background: radial-gradient(closest-side, var(--c) 60%, #fff 61% 68%, var(--c) 69%); box-shadow: 0 4px 10px -4px rgba(0, 0, 0, .6); opacity: .75; }
+.cs-chip.c5 { --c: #b91c1c; } .cs-chip.c25 { --c: #15803d; } .cs-chip.c100 { --c: #1f2937; }
+.cs-chip[aria-checked="true"] { opacity: 1; transform: translateY(-3px); box-shadow: 0 0 0 3px #ffd27a, 0 6px 12px -4px rgba(0, 0, 0, .6); }
+.cs-seg button { min-height: 36px; padding: 0 12px; border-radius: 999px; border: 1.5px solid rgba(238, 246, 240, .35); background: transparent; color: inherit; font: 600 14px/1 var(--ovk-font); cursor: pointer; }
+.cs-seg button[aria-checked="true"] { background: #eef6f0; color: #0d321f; border-color: #eef6f0; }
+.cs-hint-toggle { display: inline-flex; align-items: center; gap: 8px; margin-top: 12px; font-size: 14px; color: #b9d8c4; }
+
+/* Cards */
+.cs-hand, .cs-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; min-height: 96px; }
+.cs-hands { display: flex; flex-wrap: wrap; gap: 18px; }
+.cs-hands .cs-hand { padding: 6px; border-radius: 14px; }
+.cs-hand.is-now { box-shadow: 0 0 0 2px #ffd27a; }
+.cs-hand.is-win { box-shadow: 0 0 0 2px #b6f5c8; border-radius: 14px; padding: 6px; }
+.cs-card { position: relative; display: grid; align-content: start; width: 62px; height: 88px; padding: 6px 8px; border-radius: 9px; background: #fdfdf8; color: #121212;
+  box-shadow: 0 8px 16px -8px rgba(0, 0, 0, .7); animation: csDeal var(--ov-dur-3, .32s) var(--ov-ease-out, ease-out) both; }
+.cs-card b { font: 800 18px/1 Georgia, serif; }
+.cs-card i { font-style: normal; font-size: 22px; line-height: 1.1; }
+.cs-card.is-red { color: #c0262d; }
+.cs-card.is-back { background: repeating-linear-gradient(45deg, #7f1d1d 0 6px, #991b1b 6px 12px); box-shadow: inset 0 0 0 4px #fdfdf8, 0 8px 16px -8px rgba(0, 0, 0, .7); }
+@keyframes csDeal { from { opacity: 0; transform: translateY(-16px) rotate(-4deg); } }
+.cs-total { margin-left: 6px; font-weight: 700; color: #eef6f0; }
+
+/* Roulette */
+.cs-board { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; grid-template-areas: "zero grid cols" ". outs ."; gap: 4px; margin-top: 14px; overflow-x: auto; }
+.cs-zeros { grid-area: zero; display: grid; gap: 4px; }
+.cs-grid { grid-area: grid; display: grid; grid-template-columns: repeat(12, minmax(28px, 1fr)); gap: 4px; }
+.cs-cols { grid-area: cols; display: grid; gap: 4px; }
+.cs-outs { grid-area: outs; display: grid; grid-template-columns: repeat(auto-fit, minmax(76px, 1fr)); gap: 4px; }
+.cs-cell { position: relative; min-height: 40px; padding: 0 6px; border: 1px solid rgba(238, 246, 240, .3); border-radius: 6px; background: transparent; color: #eef6f0; font: 700 14px/1 var(--ovk-font); cursor: pointer; }
+.cs-cell.is-red { background: #b91c1c; } .cs-cell.is-black { background: #111827; } .cs-cell.is-green { background: #15803d; min-height: 64px; }
+.cs-cell.has-bet::after { content: attr(data-chips); position: absolute; right: -4px; top: -6px; min-width: 22px; padding: 3px 5px; border-radius: 999px; background: #ffd27a; color: #3b2416; font-size: 11px; }
+.cs-strip { min-height: 64px; display: flex; justify-content: center; }
+.cs-pocket { display: grid; place-items: center; width: 64px; height: 64px; border-radius: 50%; font: 800 24px/1 var(--ovk-font); color: #fff; box-shadow: 0 0 0 4px #eef6f0;
+  animation: csLand var(--ov-dur-4, .52s) var(--ov-ease-spring, cubic-bezier(.34, 1.56, .64, 1)) both; }
+.cs-pocket.is-red { background: #b91c1c; } .cs-pocket.is-black { background: #111827; } .cs-pocket.is-green { background: #15803d; }
+@keyframes csLand { from { transform: scale(.4); opacity: 0; } }
+@media (max-width: 640px) { .cs-board { grid-template-columns: 1fr; grid-template-areas: "zero" "grid" "cols" "outs"; } .cs-zeros, .cs-cols { grid-auto-flow: column; } .cs-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); } .cs-cell.is-green { min-height: 40px; } }
+
+/* Baccarat and craps spots */
+.cs-bac-hands { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 12px; min-height: 120px; }
+.cs-spots { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr)); gap: 8px; margin-top: 12px; }
+.cs-spot { display: grid; gap: 3px; justify-items: start; min-height: 76px; padding: 12px 14px; border: 1.5px dashed rgba(238, 246, 240, .4); border-radius: 14px; background: rgba(0, 0, 0, .12); color: #eef6f0; text-align: left; cursor: pointer; }
+.cs-spot b { font-size: 1.05rem; }
+.cs-spot span, .cs-spot small { color: #b9d8c4; font-size: 13px; }
+.cs-spot em { font-style: normal; font-weight: 800; color: #ffd27a; }
+.cs-spot.has-bet { border-style: solid; border-color: #ffd27a; }
+.cs-cr-top { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; min-height: 76px; }
+.cs-dice { display: flex; gap: 10px; }
+.cs-die { display: grid; grid-template-columns: repeat(3, 10px); grid-template-rows: repeat(3, 10px); gap: 4px; padding: 9px; border-radius: 12px; background: #fdfdf8; box-shadow: 0 8px 16px -8px rgba(0, 0, 0, .7);
+  animation: csDeal var(--ov-dur-3, .32s) var(--ov-ease-out, ease-out) both; }
+.cs-die i { border-radius: 50%; }
+.cs-die i.on { background: #121212; }
+.cs-puck { margin: 0; padding: 8px 14px; border-radius: 999px; background: #111827; color: #eef6f0; font-weight: 700; }
+.cs-puck.is-on { background: #fdfdf8; color: #111827; }
+
+/* Slots */
+.cs-reels-live { display: grid; grid-template-columns: repeat(3, minmax(0, 120px)); justify-content: center; gap: 10px; padding: 14px; border-radius: 18px; background: #0b2416; box-shadow: inset 0 0 0 3px #3b2416; }
+.cs-reel-win { display: grid; place-items: center; height: 120px; border-radius: 12px; background: linear-gradient(#e7e5dc, #fdfdf8 35%, #fdfdf8 65%, #e7e5dc); }
+.cs-reels-live.is-new .cs-reel-win { animation: csDeal var(--ov-dur-3, .32s) var(--ov-ease-out, ease-out) both; }
+.cs-reels-live.is-new .cs-reel-win:nth-child(2) { animation-delay: var(--ov-dur-1, .12s); }
+.cs-reels-live.is-new .cs-reel-win:nth-child(3) { animation-delay: calc(var(--ov-dur-1, .12s) * 2); }
+.cs-sym { font: 900 18px/1 var(--ovk-font); letter-spacing: .02em; color: #3b2416; }
+.cs-sym.sym-seven { font: 900 64px/1 Georgia, serif; color: #b91c1c; }
+.cs-sym.sym-star { font-size: 54px; color: #d97706; }
+.cs-sym.sym-cherry { color: #b91c1c; } .cs-sym.sym-lemon { color: #a16207; } .cs-sym.sym-plum { color: #6d28d9; } .cs-sym.sym-bell { color: #b45309; }
+.cs-reels { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 18px; }
+.cs-reel ol { list-style: none; margin: 6px 0 0; padding: 0; display: grid; gap: 2px; font-size: 12px; }
+.cs-reel li { padding: 3px 8px; border-radius: 6px; background: var(--ovk-panel-2); }
+.cs-reel li.sym-seven { background: color-mix(in srgb, #b91c1c 30%, var(--ovk-panel)); font-weight: 800; }
+
+/* Beside the table */
+.cs-table-side { display: grid; gap: 8px; margin-top: 16px; }
+.cs-edge-now { margin: 0; color: var(--ovk-muted); }
+.cs-session { margin: 0; padding: 10px 14px; border-radius: 12px; background: var(--ovk-panel); border: 1px solid var(--ovk-line); }
+.cs-gate { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; padding: 16px; background: rgba(5, 12, 8, .72); }
+.cs-gate[hidden] { display: none; }
+.cs-gate-box { width: min(460px, 100%); display: grid; gap: 12px; padding: 24px; border-radius: 22px; background: var(--ovk-panel); color: var(--ovk-text); border: 1px solid var(--ovk-line); }
+.cs-gate-box h2 { margin: 0; }
+.cs-gate-box p { margin: 0; color: var(--ovk-muted); line-height: 1.55; }
+.cs-gate-go { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px; }
+
+/* Learn, Simulate, Play safe */
+.cs-prose { display: grid; gap: 12px; max-width: 860px; line-height: 1.6; }
+.cs-prose h2 { margin: 18px 0 0; }
+.cs-prose p { margin: 0; }
+.cs-bets { border-collapse: collapse; min-width: 100%; font-variant-numeric: tabular-nums; }
+.cs-bets caption { text-align: left; font-weight: 700; padding-bottom: 8px; }
+.cs-bets th, .cs-bets td { padding: 9px 10px; border-bottom: 1px solid var(--ovk-line); text-align: left; }
+.cs-bets thead th { color: var(--ovk-muted); font-size: 13px; }
+.cs-dice-odds { display: grid; grid-template-columns: repeat(11, minmax(0, 1fr)); align-items: end; gap: 6px; height: 180px; }
+.cs-dice-odds span { display: grid; grid-template-rows: 1fr auto auto; height: 100%; text-align: center; font-variant-numeric: tabular-nums; }
+.cs-dice-odds i { align-self: end; height: calc(var(--h) / 6 * 100%); border-radius: 6px 6px 0 0; background: var(--tone, var(--room-accent)); }
+.cs-dice-odds b { font-size: 14px; }
+.cs-dice-odds small { font-size: 11px; color: var(--ovk-muted); }
+.cs-sim-form { display: flex; flex-wrap: wrap; align-items: end; gap: 12px; padding: 16px; border-radius: 18px; background: var(--ovk-panel); border: 1px solid var(--ovk-line); }
+.cs-sim-form label { display: grid; gap: 4px; font-size: 13px; font-weight: 700; color: var(--ovk-muted); }
+.cs-sim-form select, .cs-sim-form input { min-height: 40px; min-width: 0; padding: 0 10px; border-radius: 10px; border: 1px solid var(--ovk-line); background: var(--ovk-input); color: var(--ovk-text); font: 500 15px/1 var(--ovk-font); }
+.cs-sim-form input { width: 130px; }
+.cs-sim-out { display: grid; gap: 12px; margin-top: 18px; }
+.cs-progress { height: 6px; border-radius: 3px; background: var(--ovk-panel-2); overflow: hidden; }
+.cs-progress i { display: block; height: 100%; width: 0; background: var(--room-accent); }
+.cs-sim-chart { width: 100%; height: auto; aspect-ratio: 720 / 260; border-radius: 16px; background: var(--ovk-panel); border: 1px solid var(--ovk-line); }
+.cs-sim-result { margin: 0; font-size: 1.1rem; font-weight: 600; line-height: 1.5; }
+.cs-sim-result a { color: var(--room-strong); word-break: break-all; }
+.cs-help { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.cs-help li { display: grid; gap: 2px; padding: 12px 14px; border-radius: 14px; background: var(--ovk-panel); border: 1px solid var(--ovk-line); }
+.cs-help a { font-weight: 800; color: var(--room-strong); }
+.cs-help span { color: var(--ovk-muted); font-size: 14px; }
+.cs-safe-line { display: flex; align-items: center; gap: 10px; margin: 28px 0 0; padding: 12px 16px; border-radius: 14px; background: var(--ovk-panel); color: var(--ovk-muted); font-size: 14px; line-height: 1.45; }
+.cs-safe-line .ovk-i { flex: none; width: 18px; height: 18px; color: var(--room-accent); }
+.cs-home .cs-safe-line { margin-bottom: 28px; }
+
+@media (max-width: 640px) {
+  .cs-table-h { grid-template-columns: 1fr; }
+  .cs-wallet { justify-items: start; }
+  .cs-felt { padding: 16px; border-radius: 20px; }
+  .cs-card { width: 50px; height: 72px; }
+  .cs-dice-odds { height: 140px; gap: 3px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cs-mc, .cs-stack span, .cs-curve path, .cs-l-bar i, .cs-bank-p, .cs-card, .cs-pocket, .cs-die, .cs-reels-live.is-new .cs-reel-win { animation: none; }
+  .cs-btn, .cs-game a { transition: none; }
+}

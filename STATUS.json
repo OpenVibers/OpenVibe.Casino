@@ -1,0 +1,53 @@
+{
+  "repository": "OpenVibers/OpenVibe.Casino",
+  "version": "0.1.0",
+  "stage": "v1",
+  "code": true,
+  "wave": "W21",
+  "plan": "OpenVibe.Casino: learn it, play it, never pay it. Casino games with their odds showing, tables with play chips worth nothing, and simulations; plan 5.14.",
+  "runtime": "node 22, express 4, PostgreSQL 18 (openvibe-sdk/db, async) + Valkey 9",
+  "port": "5210",
+  "domain": "openvibe.casino",
+  "contracts": "openvibe-contracts v0.234.0",
+  "sdk": "openvibe-sdk v0.74.0",
+  "shared": "openvibe-shared v4.67.0",
+  "packages": [
+    "openvibe-contracts v0.234.0",
+    "openvibe-sdk v0.74.0",
+    "openvibe-shared v4.67.0"
+  ],
+  "summary": "Five open engines (blackjack, roulette, baccarat, craps, slots) with exact or checked house edges, playable tables, Learn explainers built on the engines, a Web Worker simulator with shareable runs, and an open API. No real money; an 18+ gate and play-safe lines throughout.",
+  "works": [
+    "Engines: blackjack (S17, DAS, basic strategy and two naive strategies, simulated), roulette (European, American, every bet, exact), baccarat (8 decks, exact by path enumeration), craps (pass, don't pass, odds, place, field, exact), slots (exact RTP over every stop)",
+    "Every edge checked against Wizard of Odds' published figure (test/engines.test.js)",
+    "Tables for every game with daily play chips in the browser, an 18+ gate and a 30-minute reminder",
+    "Learn pages with the engine's own basic-strategy charts, the baccarat tableau, the dice odds and the slot strips",
+    "A Web Worker simulator charting the house's share toward the exact edge; shareable runs (casino_sims)",
+    "API: /games, /simulate (bounded), /sims/:id, OpenAPI"
+  ],
+  "notYet": [
+    "Daily chip highs for signed-in people (play chips only)",
+    "3D tables on the Games engine",
+    "Operator and affiliate content only after the owner's legal review"
+  ],
+  "capabilitiesRegistered": false,
+  "serviceManifestRegistered": false,
+  "deployed": false,
+  "placeholderInSites": false,
+  "features": [
+    "blackjack",
+    "roulette",
+    "baccarat",
+    "craps",
+    "slots",
+    "house edge ladder",
+    "basic strategy hints",
+    "simulator",
+    "shareable runs",
+    "play chips",
+    "18+ gate",
+    "play safe"
+  ],
+  "deployment": "openvibe-casino.service on 127.0.0.1:5210 behind deploy/nginx/openvibe.casino.conf",
+  "updated": "2026-10-31"
+}
