@@ -55,7 +55,7 @@
 .cs-ladder { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
 .cs-ladder a { display: grid; grid-template-columns: 96px minmax(0, 220px) minmax(0, 1fr) 72px; align-items: center; gap: 12px; padding: 7px 10px; border-radius: 10px; color: var(--ovk-text); text-decoration: none; }
 .cs-ladder a:hover { background: var(--ovk-panel); }
-.cs-l-game { font-size: 13px; font-weight: 700; color: var(--tone); }
+.cs-l-game { font-size: 13px; font-weight: 700; color: color-mix(in srgb, var(--tone) 55%, var(--text-primary, #e6edf7)); }
 .cs-l-bet { font-size: 14px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .cs-l-bar { height: 10px; border-radius: 5px; background: var(--ovk-panel-2); overflow: hidden; }
 .cs-l-bar i { display: block; height: 100%; width: var(--w); border-radius: inherit; background: var(--tone); transform-origin: 0 50%; animation: csGrow var(--ov-dur-4, .52s) var(--ov-ease-out, ease-out) both; }
