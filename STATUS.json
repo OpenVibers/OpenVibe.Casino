@@ -10,11 +10,11 @@
   "domain": "openvibe.casino",
   "contracts": "openvibe-contracts v0.264.0",
   "sdk": "openvibe-sdk v0.74.0",
-  "shared": "openvibe-shared v4.85.0",
+  "shared": "openvibe-shared v4.86.0",
   "packages": [
     "openvibe-contracts v0.264.0",
     "openvibe-sdk v0.74.0",
-    "openvibe-shared v4.85.0"
+    "openvibe-shared v4.86.0"
   ],
   "summary": "Five open engines (blackjack, roulette, baccarat, craps, slots) with exact or checked house edges, playable tables, Learn explainers built on the engines, a Web Worker simulator with shareable runs, and an open API. No real money; an 18+ gate and play-safe lines throughout.",
   "works": [
