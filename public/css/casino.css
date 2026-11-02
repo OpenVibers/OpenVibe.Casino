@@ -66,7 +66,8 @@
   .cs-ladder a { grid-template-columns: minmax(0, 1fr) 64px; grid-template-areas: "bet edge" "bar bar"; gap: 4px 10px; }
   .cs-l-game { display: none; }
   .cs-l-bet { grid-area: bet; white-space: normal; }
-  .cs-l-g2 { display: inline; color: var(--tone); font-weight: 700; }
+  /* The game's tone, mixed toward the text so it reads in every theme (the raw tones were 3.4-3.6:1, WCAG sweep 2026-11-01). */
+  .cs-l-g2 { display: inline; color: color-mix(in srgb, var(--tone) 55%, var(--text-primary, #e6edf7)); font-weight: 700; }
   .cs-l-bar { grid-area: bar; height: 8px; }
   .cs-l-edge { grid-area: edge; }
 }
