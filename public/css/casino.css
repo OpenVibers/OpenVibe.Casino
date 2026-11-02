@@ -200,6 +200,8 @@
 .cs-session { margin: 0; padding: 10px 14px; border-radius: 12px; background: var(--ovk-panel); border: 1px solid var(--ovk-line); }
 .cs-gate { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; padding: 16px; background: rgba(5, 12, 8, .72); }
 .cs-gate[hidden] { display: none; }
+/* "Share this run" waits for a run: the button's own display outranked the hidden attribute (2026-11-01 sweep). */
+.cs-btn[hidden] { display: none; }
 .cs-gate-box { width: min(460px, 100%); display: grid; gap: 12px; padding: 24px; border-radius: 22px; background: var(--ovk-panel); color: var(--ovk-text); border: 1px solid var(--ovk-line); }
 .cs-gate-box h2 { margin: 0; }
 .cs-gate-box p { margin: 0; color: var(--ovk-muted); line-height: 1.55; }
