@@ -80,6 +80,13 @@ const games = require('../engine/games');
             const map = await t.get('/sitemap.xml');
             for (const g of games.catalogue()) assert.ok(map.text.includes(`/learn/${g.id}</loc>`) && map.text.includes(`/play/${g.id}</loc>`), g.id);
             assert.match((await t.get('/robots.txt')).text, /Disallow: \/s\//);
+            // AGT-5: llms.txt links each page at its Markdown twin, the API and files as they are, ## Optional last.
+            const llms = (await t.get('/llms.txt')).text;
+            assert.match(llms, /\(https?:\/\/[^)]*\/index\.md\)/, 'the home links its twin');
+            assert.match(llms, /\(https?:\/\/[^)]*\/learn\/blackjack\.md\)/);
+            assert.match(llms, /\(https?:\/\/[^)]*\/api\/v1\/openapi\.json\)/);
+            assert.ok(llms.includes('\n## Optional\n') && llms.lastIndexOf('\n## ') === llms.indexOf('\n## Optional\n'), 'Optional is last');
+            assert.strictEqual((await t.get('/learn/blackjack.md')).status, 200, 'a twin it links answers');
         });
     } finally { await t.close(); }
     done();

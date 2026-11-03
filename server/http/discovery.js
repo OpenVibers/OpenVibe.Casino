@@ -61,18 +61,23 @@ function createDiscoveryRoutes(ctx) {
     });
 
     r.get('/llms.txt', (_req, res) => {
+        // AGT-5: own pages link their Markdown twins (openvibe-shared 4.108.0); ## Optional is what an agent may skip.
         res.type('text/plain').set('Cache-Control', TEXT).send(seo.llmsTxt({
             name: SITE_NAME,
             summary: DESCRIPTION,
+            markdown: true,
+            base: site,
             details: 'GET /api/v1/games lists every game, its rules and each bet\'s house edge (exact where the maths allows, simulated for blackjack strategies) with the published source. POST /api/v1/simulate runs a bounded simulation. Play chips are free, reset daily and are worth nothing; nothing is bought or cashed out.',
             sections: [
                 { title: 'Start here', links: pages.map((p) => ({ title: p.title, url: abs(p.path), note: p.text })) },
                 { title: 'Machine-readable', links: [
                     { title: 'Games and house edges (JSON)', url: abs('/api/v1/games') },
                     { title: 'OpenAPI', url: abs('/api/v1/openapi.json') },
-                    { title: 'Sitemap', url: abs('/sitemap.xml') },
-                    { title: 'Full text for language models', url: abs('/llms-full.txt') },
                 ] },
+            ],
+            optional: [
+                { title: 'Sitemap', url: abs('/sitemap.xml') },
+                { title: 'Full text for language models', url: abs('/llms-full.txt') },
             ],
         }));
     });
