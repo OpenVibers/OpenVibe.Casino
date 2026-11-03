@@ -9,6 +9,7 @@ module.exports = {
     site: "openvibe.casino",
     api: "/api/v1",
     docs: "/developers",
+    openapi: '/openapi.json',
     policy: {
         auth: ["none", "Network OIDC"],
     },
