@@ -67,6 +67,8 @@ async function createApp(opts = {}) {
     };
 
     const app = express();
+    // /.well-known/agent.json (openvibe-shared/agent-layer, SEO-2): what this site serves, for agents.
+    require('openvibe-shared/agent-layer').mount(app, { descriptor: require('./agent-descriptor') });
     app.disable('x-powered-by');
     app.set('trust proxy', config.trustProxy);
     const release = require('openvibe-shared/release').createRelease({ service: 'casino', root: path.join(__dirname, '..') });
