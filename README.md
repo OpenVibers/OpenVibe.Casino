@@ -2,6 +2,9 @@
 
 > Learn it, play it, never pay it.
 
+**Live site:** https://openvibe.casino · **API docs:** https://openvibe.services · **For AI:** https://openvibe.casino/llms.txt
+**Run it:** `npm ci && npm run dev` (Node 22 or newer) · **Tests:** `npm test`
+
 **Domain:** `openvibe.casino` · **Port:** 5210 · **Service id:** `casino` · **Env prefix:** `CASINO`
 
 Every casino game with its insides showing: the rules, the exact odds and what each bet costs, tables you can play with
