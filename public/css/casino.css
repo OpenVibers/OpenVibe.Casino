@@ -246,10 +246,6 @@
   .cs-card { width: 50px; height: 72px; }
   .cs-dice-odds { height: 140px; gap: 3px; }
 }
-@media (prefers-reduced-motion: reduce) {
-  .cs-mc, .cs-stack span, .cs-curve path, .cs-l-bar i, .cs-bank-p, .cs-card, .cs-pocket, .cs-die, .cs-reels-live.is-new .cs-reel-win { animation: none; }
-  .cs-btn, .cs-game a { transition: none; }
-}
 
 /* Tables on a phone (phone sweep, 2026-11-01): a table of three columns or more whose cells name their column (data-label) shows each row as a card, the first
    cell its title and every other cell named by its column (html.js gives each cell its data-label). Narrower tables
