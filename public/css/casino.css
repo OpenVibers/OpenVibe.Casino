@@ -6,7 +6,7 @@
 .skip { position: absolute; left: -9999px; top: 8px; z-index: 100; padding: 8px 12px; border-radius: 8px; background: var(--ovk-panel); color: var(--ovk-text); }
 .skip:focus { left: 8px; }
 .cs-wrap { width: min(1180px, 100% - 32px); margin-inline: auto; }
-.cs-page { padding-block: 28px 56px; }
+.cs-page { padding-block: 28px 0; }
 .cs-narrow { width: min(820px, 100% - 32px); }
 .cs-page-h { display: grid; gap: 8px; margin-bottom: 24px; }
 .cs-page-h h1 { margin: 0; font-size: clamp(1.8rem, 4.5vw, 2.6rem); line-height: 1.1; text-wrap: balance; }
