@@ -48,7 +48,7 @@
         points.forEach(function (p, i) { var px = x(i); var py = y(p.edge * 100); if (i) ctx.lineTo(px, py); else ctx.moveTo(px, py); });
         ctx.stroke();
         ctx.fillStyle = css('--ovk-muted', '#93a0b4');
-        ctx.fillText('rounds played →', w - 120, h - 6);
+        ctx.fillText('rounds played, in order', w - 120, h - 6);
     }
 
     form.addEventListener('submit', function (e) {
