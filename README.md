@@ -68,7 +68,3 @@ npm test           # node test/run.js on PGlite
 ```
 
 AGPL-3.0-only.
-
-<!-- versions:start -->
-- openvibe-contracts: v0.419.0
-<!-- versions:end -->
