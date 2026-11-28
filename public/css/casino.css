@@ -155,7 +155,7 @@
 .cs-outs { grid-area: outs; display: grid; grid-template-columns: repeat(auto-fit, minmax(76px, 1fr)); gap: 4px; }
 .cs-cell { position: relative; min-height: 40px; padding: 0 6px; border: 1px solid rgba(238, 246, 240, .3); border-radius: 6px; background: transparent; color: #eef6f0; font: 700 14px/1 var(--ovk-font); cursor: pointer; }
 .cs-cell.is-red { background: #b91c1c; } .cs-cell.is-black { background: #111827; } .cs-cell.is-green { background: #15803d; min-height: 64px; }
-.cs-cell.has-bet::after { content: attr(data-chips); position: absolute; right: -4px; top: -6px; min-width: 22px; padding: 3px 5px; border-radius: 999px; background: #ffd27a; color: #3b2416; font-size: 11px; }
+.cs-cell.has-bet::after { content: attr(data-chips); position: absolute; right: -4px; top: -6px; min-width: 22px; padding: 3px 5px; border-radius: 999px; background: #ffd27a; color: #3b2416; font-size: 12px; }
 .cs-strip { min-height: 64px; display: flex; justify-content: center; }
 .cs-pocket { display: grid; place-items: center; width: 64px; height: 64px; border-radius: 50%; font: 800 24px/1 var(--ovk-font); color: #fff; box-shadow: 0 0 0 4px #eef6f0;
   animation: csLand var(--ov-dur-4, .52s) var(--ov-ease-spring, cubic-bezier(.34, 1.56, .64, 1)) both; }
@@ -220,7 +220,7 @@
 .cs-dice-odds span { display: grid; grid-template-rows: 1fr auto auto; height: 100%; text-align: center; font-variant-numeric: tabular-nums; }
 .cs-dice-odds i { align-self: end; height: calc(var(--h) / 6 * 100%); border-radius: 6px 6px 0 0; background: var(--tone, var(--room-accent)); }
 .cs-dice-odds b { font-size: 14px; }
-.cs-dice-odds small { font-size: 11px; color: var(--ovk-muted); }
+.cs-dice-odds small { font-size: 12px; color: var(--ovk-muted); }
 .cs-sim-form { display: flex; flex-wrap: wrap; align-items: end; gap: 12px; padding: 16px; border-radius: 18px; background: var(--ovk-panel); border: 1px solid var(--ovk-line); }
 .cs-sim-form label { display: grid; gap: 4px; font-size: 13px; font-weight: 700; color: var(--ovk-muted); }
 .cs-sim-form select, .cs-sim-form input { min-height: 40px; min-width: 0; padding: 0 10px; border-radius: 10px; border: 1px solid var(--ovk-line); background: var(--ovk-input); color: var(--ovk-text); font: 500 15px/1 var(--ovk-font); }
@@ -258,6 +258,6 @@
     .table-wrap > table:has(thead th:nth-child(3)):has(td[data-label]) tr { display: grid; gap: 8px; padding: 12px 14px; border: 1px solid var(--border, #1f2d47); border-radius: 14px; background: var(--bg-card, var(--bg-secondary, #101828)); }
     .table-wrap > table:has(thead th:nth-child(3)):has(td[data-label]) td { display: block; min-width: 0; padding: 0; border: 0; overflow-wrap: anywhere; }
     .table-wrap > table:has(thead th:nth-child(3)):has(td[data-label]) td:first-child { font-weight: 700; color: var(--text-primary, #e6edf7); }
-    .table-wrap > table:has(thead th:nth-child(3)):has(td[data-label]) td[data-label]:not(:first-child)::before { content: attr(data-label); display: block; margin-bottom: 2px; font-size: 11px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--text-muted, #7386a3); }
+    .table-wrap > table:has(thead th:nth-child(3)):has(td[data-label]) td[data-label]:not(:first-child)::before { content: attr(data-label); display: block; margin-bottom: 2px; font-size: 12px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--text-muted, #7386a3); }
     .table-wrap > table:has(thead th:nth-child(3)):has(td[data-label]) td:empty { display: none; }
 }
